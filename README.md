@@ -42,6 +42,7 @@ Our model is trained and evaluated on three public datasets:
 -   **[H2O (First-Person view)](https://github.com/taeinkwon/h2odataset)**  
 
 We adopt the data preprocessing pipeline from [GSPS](https://github.com/wei-mao-2019/gsps) to generate multi-modal data and valid angle data.
+[Processed data and caption tensor](https://huggingface.co/BBuniverse/PromptFDDM-v2/tree/main)
 
 ```
 dataset

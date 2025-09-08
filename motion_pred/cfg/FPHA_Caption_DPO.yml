@@ -1,0 +1,63 @@
+name: FPHA_SE_prompt_Caption_DPO
+
+# _, limb, _,  divertisy, prediction, RECON_mm, prior_lkh, history, angle
+lambdas: [0, 500, 0, 100, 2, 1, 0.01, 50, 100 ] 
+
+dataset: FPHA
+
+STEN_cfg:
+    z_dim: 16
+    nz: 128
+    t_his: 15
+    t_pred: 60
+    dropout: 0.1
+    nk: 10
+    nk1: 2
+    nk2: 5
+
+    lr: 1.e-3
+    batch_size: 16
+    save_model_interval: 100
+    num_epoch: 500
+    num_epoch_fix: 100
+    num_data_sample: 2000 
+    normalize_data: False
+
+    caption_warmup: 0.3 
+    caption_dropout: 0.15
+    gt_grad_warmup: 0.3
+
+    se_weight_spatial: 0.15
+    se_weight_temporal: 0.15
+    se_dropout: 0.4
+
+    specs:
+        num_flow_layer: 3
+        n_pre: 20 
+        multimodal_path: dataset/FPHA_multi_modal/t_his15_1_thre0.050_t_pred60_thre0.100_index_subAll_random.npz
+        data_candi_path: dataset/FPHA_multi_modal/data_multimodal_t_his15_t_pred60_skiprate10_random.npz
+
+# diffusion model
+RDGN_cfg:
+    lr: 2.e-4                    
+    diff_latent_dim: 768         
+    features: 320                
+
+    batch_size: 64               
+    num_data_sample: 10000       
+    noise_steps: 1000
+    ddim_timesteps: 10           
+    mod_train: 0.8               
+
+    mlp_ratio: 3                 
+    dropout: 0.15                
+    activation: 'gelu'
+    num_layers: 4                
+    num_heads: 4                 
+    DM_scheduler: 'linear'
+    prompt_len: 10
+    num_epoch: 500 
+    save_model_interval: 50
+
+# skeleton scale
+scale: 2
