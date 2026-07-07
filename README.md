@@ -4,16 +4,14 @@
 <div align="center">
 
 [Bowen Tang]()<sup>1</sup>&nbsp;
-[Kaihao Zhang]()<sup>2†</sup>&nbsp;
-[Wenhan Luo]()<sup>3</sup>&nbsp;
-[Wei Liu]()<sup>4</sup>&nbsp;
-[Min Zhang]()<sup>2</sup>&nbsp;
-[Hongdong Li]()<sup>1</sup>&nbsp;
+[Kaihao Zhang]()<sup>1</sup>&nbsp;
+[Wenhan Luo]()<sup>2</sup>&nbsp;
+[Wei Liu]()<sup>3</sup>&nbsp;
+[Min Zhang]()<sup>1</sup>&nbsp;
 
-<sup>1</sup>Australian National University &nbsp;&nbsp;
-<sup>2</sup>Harbin Institute of Technology (Shenzhen)&nbsp;&nbsp;
-<sup>3</sup>HKUST&nbsp;&nbsp;
-<sup>4</sup>Tencent Hunyuan<br>
+<sup>1</sup>Harbin Institute of Technology (Shenzhen)&nbsp;&nbsp;
+<sup>2</sup>HKUST&nbsp;&nbsp;
+<sup>3</sup>Video Rebirth<br>
 
 <h4>
     <a href="">📄 Under review</a> &nbsp; 
@@ -25,10 +23,7 @@
     <img src="index/image/Pipeline.svg" alt="Model Pipeline" style="width: 60%; height: auto; display: block; margin-left: auto; margin-right: auto;"/>
 </div>
 
-<div style="width: 90%; height: auto; display: block; margin-left: auto; margin-right: auto;">
-    The Spatial-Temporal Extraction Network (STEN) operates in two modes corresponding to the guidance it receives. During training, STEN is guided by historical visual context from a VLM and ground-truth future motion from the Ground Truth Extraction Network (GTEN). For inference, a Reference Data Generator Network (RDGN) generates plausible future guidance, conditioned on interactive prompts derived from the observed sequence. To mitigate the training-inference discrepancy, preference alignment bridges the gap between the guidance from GTEN and RDGN. The <span style="color: red;">red</span> dashed lines indicate the training-only pipeline. Black lines are used during both training and testing.
-
-</div>
+The Spatial-Temporal Extraction Network (STEN) operates in two modes according to available guidance. During training, $`\mathrm{STEN}_{\mathrm{ref}}`$ receives multi-modal guidance from the Ground Truth Extraction Network (GTEN), which encodes ground-truth future motion, and a VLM, which derives scene-aware object-interaction semantics. During inference, STEN uses the Reference Data Generator Network (RDGN) to synthesize future guidance conditioned on interactive prompts from the observed sequence. Preference alignment adapts RDGN-guided STEN using GTEN-guided predictions from $`\mathrm{STEN}_{\mathrm{ref}}`$ as preference references, aiming to reduce the training-inference discrepancy and improve prediction consistency. The <span style="color: red;">red</span> dashed lines indicate the training-only pipeline, while black lines are used during both training and testing.
 <br>
 
 ## Datasets
